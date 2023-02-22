@@ -2,16 +2,17 @@
 
 using CommandSystem;
 using Exiled.API.Features;
+using Exiled.Permissions.Extensions;
 using MEC;
 
 #endregion
-
+/*
 namespace ModerationSystem;
 
 [CommandHandler(typeof(RemoteAdminCommandHandler))]
 internal class JailReport : ICommand
 {
-    public string Command { get; } = "JailReport";
+    public string Command { get; } = "jailreport";
 
     public string[] Aliases { get; } = Array.Empty<string>();
 
@@ -19,6 +20,11 @@ internal class JailReport : ICommand
 
     public bool Execute(ArraySegment<string> arguments, ICommandSender sender, out string response)
     {
+        if (sender.CheckPermission("rmd.jailreport"))
+        {
+            response = "You do not have permission to use this command";
+            return false;
+        }
         if (arguments.Count != 1)
         {
             response = "Usage: JailReport <Reportid>";
@@ -76,4 +82,4 @@ internal class JailReport : ICommand
 
         return true;
     }
-}
+*/

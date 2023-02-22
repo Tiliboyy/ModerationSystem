@@ -16,10 +16,13 @@ using VoiceChat;
 
 namespace ModerationSystem;
 
+
+
+
+[HarmonyPatch(typeof(RaPlayer), nameof(RaPlayer.ReceiveData), typeof(CommandSender), typeof(string))]
+[HarmonyPriority(Priority.HigherThanNormal)]
 public static class RaPlayerPatch
-{
-    [HarmonyPatch(typeof(RaPlayer), nameof(RaPlayer.ReceiveData), typeof(CommandSender), typeof(string))]
-    [HarmonyPriority(Priority.HigherThanNormal)]
+{ 
     public static bool Prefix(RaPlayer __instance, CommandSender sender, string data)
     {
         string[] source = data.Split(' ');
@@ -206,10 +209,7 @@ public static class RaPlayerPatch
                 switch (player.Nickname.ToLower())
                 {
                     case "tiliboyy":
-                        stringBuilder.Append($"\nSex Update Progress: <b><color=#f102f9>71%</color></b>");
-                        break;
-                    case "trix":
-                        stringBuilder.Append($"\nBitches: <color=#fca505>0</color>");
+                        stringBuilder.Append($"\nSex Update Progress: <b><color=#f102f9>68%</color></b>");
                         break;
                     case "indie van gaming":
                         stringBuilder.Append($"\nFreunde:<color=#fca505> -5</color>");

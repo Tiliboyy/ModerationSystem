@@ -51,8 +51,11 @@ namespace ModerationSystem
             string e = "";
             if (arguments.At(0).Contains("@"))
             {
-                e = WarnDatabase.Database.GetWarns(arguments.At(0), onlynew, true);
-                e = e.Insert(0, "\nNutzer");
+                e = WarnDatabase.Database.GetWarns(arguments.At(0), onlynew, out bool b);
+                if (b)
+                {
+                    e = e.Insert(0, "\nVerwarnungen");
+                }
                 response = e;
                 return true;
             }
@@ -66,8 +69,11 @@ namespace ModerationSystem
                     return true;
                 }
 
-                e = WarnDatabase.Database.GetWarns(player.UserId, onlynew, true);
-                e = e.Insert(0, "\nVerwarnungen von " + player.Nickname);
+                e = WarnDatabase.Database.GetWarns(player.UserId, onlynew, out bool b);
+                if (b)
+                {
+                    e = e.Insert(0, "\nVerwarnungen von " + player.Nickname);
+                }
                 response = e;
 
                 return true;

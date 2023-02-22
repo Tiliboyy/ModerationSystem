@@ -27,11 +27,16 @@ namespace ModerationSystem
             var player = Player.Get(sender);
             if (player == null)
             {
-                response = "ERROR";
+                response = "You can only execute this as a player.";
                 return true;
             }
 
-            string str = WarnDatabase.Database.GetWarns(player.UserId, true, false);
+            string str = WarnDatabase.Database.GetWarns(player.UserId, true, out bool e);
+            if (e == false)
+            {
+                response = "Du hast keine Verwarnungen";
+                return true;
+            }
             response = str;
             return true;
         }

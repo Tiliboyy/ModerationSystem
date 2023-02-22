@@ -1,8 +1,10 @@
 ﻿#region
 
 using CommandSystem;
+using Exiled.Events.Handlers;
 using Exiled.Permissions.Extensions;
 using GameStore;
+using Player = Exiled.API.Features.Player;
 
 #endregion
 
@@ -25,13 +27,25 @@ namespace ModerationSystem
 
             if (arguments.Count != 2)
             {
-                response = "Usage: removewarn <Steam64ID> <WARN ID>";
+                response = "Usage: removewarn <Steam64ID/ID> <WARN ID>";
                 return true;
             }
 
-            if (int.TryParse(arguments.At(1), out var id))
+            if (Player.TryGet(arguments.At(0), out var player))
             {
-                string e = WarnDatabase.Database.RemoveWarn(arguments.At(0), id);
+                if (int.TryParse(arguments.At(1), out var id))
+                {
+                    string e = WarnDatabase.Database.RemoveWarn(player.UserId, id);
+                    response = e;
+                    return true;
+                }
+                response = "ERROR: ID ist keine Zahl";
+                return true;
+            }
+
+            if (int.TryParse(arguments.At(1), out var i))
+            {
+                string e = WarnDatabase.Database.RemoveWarn(arguments.At(0), i);
                 response = e;
                 return true;
             }

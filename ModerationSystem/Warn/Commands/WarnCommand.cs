@@ -46,7 +46,7 @@ namespace ModerationSystem
             if (arguments.At(0).Contains("@"))
             {
                 response = WarnDatabase.Database.AddWarn(arguments.At(0), player.Nickname, number,
-                    FormatArguments(arguments, 2));
+                    FormatArguments(arguments, 2), null);
                 return true;
             }
 
@@ -60,7 +60,7 @@ namespace ModerationSystem
                 }
 
                 response = WarnDatabase.Database.AddWarn(playera.UserId, player.Nickname, number,
-                    FormatArguments(arguments, 2));
+                    FormatArguments(arguments, 2), null);
                 return true;
             }
 

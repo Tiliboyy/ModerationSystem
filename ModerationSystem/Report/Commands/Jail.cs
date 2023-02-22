@@ -21,11 +21,12 @@ public class Jail
 
     public static IEnumerator<float> JailPlayer(Player? player)
     {
+        
         if (player == null) yield break;
         if (JailedPlayers.TryGetValue(player, out var jailedPlayer))
         {
             player.Role.Set(jailedPlayer.Role, SpawnReason.ForceClass, RoleSpawnFlags.None);
-            yield return Timing.WaitForSeconds(0.5f);
+            yield return Timing.WaitForSeconds(0.1f);
             try
             {
                 JailedPlayers.Remove(player);
@@ -60,10 +61,9 @@ public class Jail
                 Role = player.Role,
                 Ammo = ammo,
             });
-            yield return Timing.WaitForSeconds(1f);
+            yield return Timing.WaitForSeconds(0.1f);
             player.ClearInventory(false);
             player.Role.Set(RoleTypeId.Tutorial, SpawnReason.ForceClass, RoleSpawnFlags.UseSpawnpoint);
-
             yield return 1;
         }
     }

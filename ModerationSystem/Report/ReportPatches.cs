@@ -5,7 +5,7 @@ using HarmonyLib;
 using Utf8Json;
 
 #endregion
-
+/*
 namespace ModerationSystem;
 
 public class Patches
@@ -77,3 +77,4 @@ public class Patches
         }
     }
 }
+*/

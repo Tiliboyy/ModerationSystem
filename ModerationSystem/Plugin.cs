@@ -15,7 +15,7 @@ public class Plugin : Plugin<Config>
 {
     public static Plugin Singleton;
 
-    private Harmony _harmony;
+    private Harmony Harmony;
 
     public override string Author => "Tiliboyy";
     public override string Name => "ModerationSystem";
@@ -29,8 +29,10 @@ public class Plugin : Plugin<Config>
     {
         try
         {
-            _harmony = new Harmony("Tiliboyy.ModerationSystem.Patches");
-            _harmony.PatchAll();
+            if (!Directory.Exists(Path.Combine(Paths.Configs, "ModerationSystem/")))
+                Directory.CreateDirectory(Path.Combine(Paths.Configs, "ModerationSystem/"));
+            Harmony = new Harmony("Tiliboyy.ModerationSystem.Patches");
+            Harmony.PatchAll();
             Singleton = this;
             Server.WaitingForPlayers += EventHandler.OnWaitingForPlayers;
             base.OnEnabled();
@@ -44,7 +46,7 @@ public class Plugin : Plugin<Config>
 
     public override void OnDisabled()
     {
-        _harmony?.UnpatchAll();
+        Harmony.UnpatchAll();
         Singleton = null!;
         Server.WaitingForPlayers -= EventHandler.OnWaitingForPlayers;
         base.OnDisabled();

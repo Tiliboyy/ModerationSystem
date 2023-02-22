@@ -7,7 +7,7 @@ using YamlDotNet.Serialization;
 #endregion
 
 namespace ModerationSystem;
-
+/*
 public class ReportDatabase
 {
     public static List<Report> OpenReports = new();
@@ -110,3 +110,4 @@ public class ReportDatabase
         public string Reason { get; set; }
     }
 }
+*/

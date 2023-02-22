@@ -2,6 +2,7 @@
 
 using CommandSystem;
 using Exiled.API.Features;
+using Exiled.Permissions.Extensions;
 using MEC;
 
 #endregion
@@ -11,14 +12,19 @@ namespace ModerationSystem;
 [CommandHandler(typeof(RemoteAdminCommandHandler))]
 internal class JailCommand : ICommand
 {
-    public string Command { get; } = "Jail";
+    public string Command { get; } = "jail";
 
     public string[] Aliases { get; } = Array.Empty<string>();
 
-    public string Description { get; } = "Jails a Player";
+    public string Description { get; } = "Usage: Jail <player>";
 
     public bool Execute(ArraySegment<string> arguments, ICommandSender sender, out string response)
     {
+        if (!sender.CheckPermission("ws.jail"))
+        {
+            response = "You do not have permission to use this command";
+            return false;
+        }
         Player? player;
         switch (arguments.Count)
         {

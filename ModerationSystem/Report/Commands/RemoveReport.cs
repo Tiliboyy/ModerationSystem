@@ -1,10 +1,11 @@
 ﻿#region
 
 using CommandSystem;
+using Exiled.Permissions.Extensions;
 using ModerationSystem;
 
 #endregion
-
+/*
 [CommandHandler(typeof(RemoteAdminCommandHandler))]
 internal class RemoveReport : ICommand
 {
@@ -16,6 +17,11 @@ internal class RemoveReport : ICommand
 
     public bool Execute(ArraySegment<string> arguments, ICommandSender sender, out string response)
     {
+        if (sender.CheckPermission("rmd.remove"))
+        {
+            response = "You do not have permission to use this command";
+            return false;
+        }
         if (arguments.Count != 1)
         {
             response = "Usage: RemoveReport <ReportID>";
@@ -38,3 +44,4 @@ internal class RemoveReport : ICommand
         return true;
     }
 }
+*/
