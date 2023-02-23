@@ -2,6 +2,6 @@
 
 ## Features
 Jail<br />
-ReportPing<br /> (soon)
-ReportJail (Jails all persons from a report)<br /> (soon)
+ReportPing (soon)<br />
+ReportJail (Jails all persons from a report) (soon)<br />
 Warns<br />
